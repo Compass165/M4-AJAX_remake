@@ -52,8 +52,20 @@
                         content += getSmartphone(data[i]);
                     }
                     document.getElementById('smartphoneList').innerHTML = content;
+                    $(".deleteSmartphone").modal('hide');
                 }
             });
+
+            $('.deleteSmartphone').click(function (event) {
+                let smartphoneId = document.getElementById("delete-sp-id").value;
+                $.ajax({
+                    type: "DELETE",
+                    url: `/smartphones/${smartphoneId}`,
+                    success: successHandler
+                })
+
+            })
+
         }
 
         function getSmartphone(smartphone) {
